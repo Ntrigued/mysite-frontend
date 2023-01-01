@@ -6,7 +6,8 @@ import NavBar from '../components/navbar';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-      <div className={'h-screen flex flex-1 items-stretch flex-col lg:flex-row'}>
+      <div className={'h-screen w-screen flex ' +
+          'items-stretch flex-col xl:flex-row'}>
         <NavBar />
         <Component {...pageProps} />
       </div>

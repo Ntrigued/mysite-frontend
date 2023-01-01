@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build # && ..\\\\..\\\\venv\\\\Scripts\\\\python.exe ..\\\\manage.py collectstatic --noinput",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
