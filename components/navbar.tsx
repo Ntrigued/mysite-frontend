@@ -14,7 +14,7 @@ export default function NavBar() {
                                 'xl:px-inherit xl:pb-inherit xl:text-md' + ' ';
     // @ts-ignore
     return (
-        <nav id={'outerNav'} className={'bg-slate-500 flex flex-col items-center justify-items-center ' +
+        <nav id={'outerNav'} className={'bg-slate-500 flex flex-col shrink-0 items-center justify-items-center ' +
                                         'md:flex-row md:justify-items-left '+
                                         'xl:flex-col xl:mt-[1%] xl:mb-[3%] xl:w-[7.5%] '+
                                         'xl:rounded-br-xl xl:rounded-tr-xl xl:justify-items-center'}>
@@ -26,6 +26,9 @@ export default function NavBar() {
             </div>
             <div className={maybe_hidden + navbar_link_styles + ' xl:pt-[20%] '}>
                 <Link href={'/'}>Home</Link>
+            </div>
+            <div className={maybe_hidden + navbar_link_styles + ' xl:pt-[10%] '}>
+                <Link href={'/ScrollingSiteReader'} className={'word-'}>Site Reader</Link>
             </div>
             <div className={maybe_hidden + navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/about'} className={'word-'}>About Me</Link>
