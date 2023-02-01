@@ -24,10 +24,8 @@ export default function CommentSection(props: any) {
     const [opened_list, setCommentOpenedList] = useState<Array<Boolean>>([]);
 
     useEffect(() => {
-        console.log('Maybe getting comments', is_visible, comment_data, adapter);
         if(is_visible && comment_data.length == 0) {
             adapter.getComments(comment_ids).then((data: Array<any>) => {
-                console.log('getting comments');
                 setCommentData(data);
                 setCommentOpenedList(Array(data.length).fill(false));
             });
@@ -35,16 +33,18 @@ export default function CommentSection(props: any) {
     }, [props.is_visible]);
 
     let comment_components: JSX.Element[] = comment_data.map((item: any, idx) => {
-        console.log('item: ', item, ' children visible: ', opened_list[idx]);
         let item_id = item['comment_id'];
         let comment = item['comment'];
+        let username = item['username'];
         let datetime = item['datetime'];
         let like_count = item['like_count'];
         let child_ids: Array<string | Number> = item['children'];
 
         const maybe_hidden = opened_list[idx] ? '' : ' hidden ';
+        const maybe_likes = like_count === null ? '' : 'Likes: ' + like_count;
         return (
-            <div key={item_id} className={'flex flex-col bg-white '}>
+            <div key={item_id} className={'flex flex-col bg-white pt-[3vh] pb-[1.5vh] ' +
+                'bg-gradient-to-b from-transparent to-[#94a3b85c]'}>
                 <div className={'flex flex-col'}
                      onClick={() => {
                          console.log('updating opened_list for ', idx);
@@ -52,12 +52,18 @@ export default function CommentSection(props: any) {
                          new_opened[idx] = !new_opened[idx];
                          setCommentOpenedList(new_opened);
                      }}>
-                    <div className={' flex flex-row items-center justify-start h-[5vh] pl-[1.25%]'}>
-                        <p>{comment}</p>
+                    <div className={'flex flex-row justify-start ml-[2.5%] min-w-[15%] font-bold'}>
+                        {username}</div>
+                    <div className={' flex flex-col justify-start py-[1vh] pl-[1.25%]'}
+                        dangerouslySetInnerHTML={{__html: comment}}>
                     </div>
-                    <div className={'flex flex-row grow items-center justify-items-center w-[100%]'}>
-                        <div className={'flex flex-row grow justify-start ml-[2.5%]'}>Likes: {like_count}</div>
-                        <div className={'flex flex-row grow justify-start ml-[2.5%]'}>{datetime}</div>
+                    <div className={'flex flex-row items-center justify-items-center w-full'}>
+                        <div className={'flex flex-row justify-start ml-[2.5%] min-w-[15%] text-sm'}>
+                            {datetime}</div>
+                        <div className={'flex flex-row justify-start ml-[2.5%] min-w-[15%] text-sm'}>
+                            {maybe_likes}</div>
+                        <div className={'flex flex-row grow justify-end mr-[2.5%] italic text-sm'}>
+                            ({child_ids.length} children)</div>
                     </div>
                 </div>
                 <div className={'' + maybe_hidden}>
@@ -66,7 +72,6 @@ export default function CommentSection(props: any) {
                 </div>
             </div>);
     });
-    console.log('loaded CommentSection with key:', props.key, ' is_visible: ', is_visible);
     const maybe_hidden = is_visible ? '' : ' hidden ';
     return (
         <div className={'bg-slate-300 cursor-pointer flex flex-col w-[100%] pl-[2.5%]' + maybe_hidden}>

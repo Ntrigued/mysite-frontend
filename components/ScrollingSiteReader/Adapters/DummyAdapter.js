@@ -44,7 +44,6 @@ class DummyAdapter extends AbstractAdapter {
   async getNextBatch() { return this.tryForNextNItems(5); }
 
   async getInitial() {
-    this.updateDetailView(1);
     return this.tryForNextNItems(50);
   }
 
@@ -68,6 +67,7 @@ class DummyAdapter extends AbstractAdapter {
       return {
           'comment': comment,
           'comment_id': this.comments_created,
+          'username': 'user_123!',
           'like_count': like_count,
           'datetime': datetime,
           'children': [1,2,3,4,5,6,7,8,9,10],
@@ -84,8 +84,8 @@ class DummyAdapter extends AbstractAdapter {
       return comment_data;
   }
 
-  async updateDetailView(id) {
-    this.setDetailView(
+  async getDetailView(id) {
+    return (
       <div className={'flex flex-col items-center h-screen overflow-y-scroll'}>
           <div id={'dummy-title-' + id} className={'flex items-center'}>
               <h1 className={'text-4xl text-bold'}>Dummy Detail View for Item #{ id }</h1>

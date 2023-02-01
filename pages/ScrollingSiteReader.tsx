@@ -4,8 +4,8 @@ import HNAdapter from '../components/ScrollingSiteReader/Adapters/HNAdapter';
 
 export default function ScrollingSiteReader(props: any) {
     return (
-      <div>
-        <SiteContainer adapter={new DummyAdapter()} />
+      <div className={' h-full w-full'}>
+        <SiteContainer />
       </div>
     );
 }

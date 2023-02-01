@@ -10,13 +10,21 @@ import React, { useState, useRef, useEffect } from 'react';
 
 function InfiniteList(props) {
   const adapter = props.adapter;
+  const setDetailView = props.setDetailView;
   let reload_amount = adapter.reload_amount;
   const [items, setItems] = useState([]);
   const listElem = useRef(undefined);
 
   useEffect(() => {
-      adapter.getInitial().then(initial_items => setItems(initial_items))
-  }, []);
+      console.log('getting initial for ', adapter);
+      if(!adapter.initial_items_mutex) {
+        adapter.getInitial().then(initial_items => {
+          adapter.getDetailView(initial_items[0]['id'])
+              .then((detail_view) => setDetailView(detail_view));
+          setItems(initial_items);
+        });
+      }
+  }, [adapter]);
 
   function maybeUpdate() {
     let el = listElem.current;
@@ -30,9 +38,10 @@ function InfiniteList(props) {
     }
   }
 
+  const list_elems = items.map((item_info) => adapter.buildListItem(item_info));
   return (
-    <div ref={listElem} onScroll={maybeUpdate} className={'flex flex-col items-center h-screen overflow-y-scroll'} >
-      { items }
+    <div ref={listElem} onScroll={maybeUpdate} className={'flex flex-col items-center h-full overflow-y-scroll'} >
+      { list_elems }
     </div>
   );
 }

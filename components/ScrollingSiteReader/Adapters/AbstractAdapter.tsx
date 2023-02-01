@@ -1,13 +1,15 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 
 export default class AbstractAdapter {
+    // Don't call getInitial while its running, a problem thanks to double-rendering
+    initial_items_mutex: Boolean = false;
     setDetailView: Dispatch<SetStateAction<any>>| undefined
     
     setDetailViewSetter(setDetailView: Dispatch<SetStateAction<any>>) {
         this.setDetailView = setDetailView;
     }
     
-    async getInitialItems(): Promise<JSX.Element[]> { throw new Error("Not Implemented"); }
+    async getInitial(): Promise<JSX.Element[]> { throw new Error("Not Implemented"); }
     async getNextBatch(): Promise<JSX.Element[]> { throw new Error("Not Implemented"); } //Let the adapter decide how many items to get
     async tryForNextNItems(N: Number): Promise<JSX.Element[]> { throw new Error("Not Implemented"); } // Load N items
     async getNextN(N: Number, last_id: Number | string): Promise<JSX.Element[]> { throw new Error("Not Implemented"); } // get up-to N new items, that should appear higher than an item IDed by last_id
@@ -18,7 +20,7 @@ export default class AbstractAdapter {
 
     buildListItem(data: any): JSX.Element {
         return (
-            <div className={'cursor-pointer flex w-[100%] ' +
+            <div className={'cursor-pointer flex w-[100%] pt-[1vh] pb-[0.5vh] ' +
                 'bg-gradient-to-b from-slate-200 to-white hover:bg-gradient-to-t hover:from-slate-300'}
                  onClick={ data['onClick'] } key={data['key']}>
                 {data['inner_html']}
