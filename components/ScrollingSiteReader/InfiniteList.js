@@ -12,20 +12,12 @@ function InfiniteList(props) {
   const adapter = props.adapter;
   const setDetailView = props.setDetailView;
   let reload_amount = adapter.reload_amount;
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(props.initial_items);
   const listElem = useRef(undefined);
+  // Replace with any updates from parent component
+  useEffect(() => setItems(props.initial_items), [props.initial_items]);
 
-  useEffect(() => {
-      console.log('getting initial for ', adapter);
-      if(!adapter.initial_items_mutex) {
-        adapter.getInitial().then(initial_items => {
-          adapter.getDetailView(initial_items[0]['id'])
-              .then((detail_view) => setDetailView(detail_view));
-          setItems(initial_items);
-        });
-      }
-  }, [adapter]);
-
+  console.log('props initial_items:', props.initial_items);
   function maybeUpdate() {
     let el = listElem.current;
     let max_height = el.scrollHeight - el.offsetHeight;

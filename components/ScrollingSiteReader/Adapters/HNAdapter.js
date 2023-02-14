@@ -1,7 +1,8 @@
 import AbstractAdapter  from "./AbstractAdapter";
 import React from "react";
 import CommentSection from "../CommentSection";
-import {comment} from "postcss";
+import Image from "next/image";
+import url_link_img from 'public/url_link.jpg';
 
 class HNAdapter extends AbstractAdapter {
   constructor(setDetailView) {
@@ -94,7 +95,7 @@ class HNAdapter extends AbstractAdapter {
     const comment_info = await fetch(this.basic_item_info_endpoint + item_id + ".json")
         .then(response => response.json());
 
-    const comment_date = new Date(comment_info['time']);
+    const comment_date = new Date(comment_info['time'] * 1000);
     const datetime = comment_date.toDateString() + ' ' +
         comment_date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     const children = 'kids' in comment_info ? comment_info['kids'] : []; // HN skips key when there aren't kids
@@ -120,13 +121,26 @@ class HNAdapter extends AbstractAdapter {
   async getDetailView(item_id) {
     const item_info = await this.getBasicItemInfo(item_id);
 
+    const children = item_info['kids'];
+    const user = item_info['by'];
+    const item_date = new Date(item_info['time'] * 1000);
+    const datetime = item_date.toDateString() + ' ' +
+        item_date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
     let title = item_info['title'];
-    let children = item_info['kids'];
-    if ('url' in item_info) title = <a href={item_info['url']} target="_blank" rel="noreferrer"> {title} </a>;
+    if ('url' in item_info) {
+      title = <a href={item_info['url']} target="_blank" rel="noreferrer" className={'hover:underline'}>
+        {title}
+        <Image src={url_link_img}  alt={'link image'} className={'w-[0.75em] inline'}/>
+      </a>;
+    }
+    let content = '';
+    if('text' in item_info) content = <div className={'my-[2.5%]'}
+                                           dangerouslySetInnerHTML={{__html: item_info['text']}}></div>;
     return (
         <div className={'flex flex-col w-full h-full overflow-y-scroll'}>
           <div className={'pl-[5%] flex flex-wrap'}>
             <h2 className={'text-2xl'}>{title}</h2>
+            {content}
           </div>
           <div className={'flex flex-col flex-wrap'}>
             <CommentSection adapter={this} key={item_id} comment_ids={children} is_visible={true} />
@@ -137,3 +151,4 @@ class HNAdapter extends AbstractAdapter {
 }
 
 export default HNAdapter;
+

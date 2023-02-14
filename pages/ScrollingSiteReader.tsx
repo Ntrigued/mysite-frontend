@@ -1,11 +1,11 @@
-import SiteContainer from '../components/ScrollingSiteReader/SiteContainer';
+import SiteReaderContainer from '../components/ScrollingSiteReader/SiteReaderContainer';
 import DummyAdapter from '../components/ScrollingSiteReader/Adapters/DummyAdapter';
 import HNAdapter from '../components/ScrollingSiteReader/Adapters/HNAdapter';
 
 export default function ScrollingSiteReader(props: any) {
     return (
-      <div className={' h-full w-full'}>
-        <SiteContainer />
+      <div className={' h-[97.5vh] w-full mt-[2.5vh]'}>
+        <SiteReaderContainer />
       </div>
     );
 }
