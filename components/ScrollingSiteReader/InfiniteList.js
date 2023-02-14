@@ -32,7 +32,7 @@ function InfiniteList(props) {
 
   const list_elems = items.map((item_info) => adapter.buildListItem(item_info));
   return (
-    <div ref={listElem} onScroll={maybeUpdate} className={'flex flex-col items-center h-full overflow-y-scroll'} >
+    <div ref={listElem} onScroll={maybeUpdate} className={'flex flex-col items-center w-full h-full overflow-y-scroll'}>
       { list_elems }
     </div>
   );

@@ -3,9 +3,9 @@ import React, {Dispatch, SetStateAction, useState} from 'react';
 export default class AbstractAdapter {
     // Don't call getInitial while its running, a problem thanks to double-rendering
     initial_items_mutex: Boolean = false;
-    setDetailView: Dispatch<SetStateAction<any>>| undefined
-    
-    setDetailViewSetter(setDetailView: Dispatch<SetStateAction<any>>) {
+    setDetailView: Dispatch<SetStateAction<any>>
+
+    constructor(setDetailView: Dispatch<SetStateAction<any>>) {
         this.setDetailView = setDetailView;
     }
     
@@ -20,10 +20,18 @@ export default class AbstractAdapter {
 
     buildListItem(data: any): JSX.Element {
         return (
-            <div className={'cursor-pointer flex w-[100%] pt-[1vh] pb-[0.5vh] ' +
+            <div className={'cursor-pointer flex w-full pt-[1vh] pb-[0.5vh] ' +
                 'bg-gradient-to-b from-slate-200 to-white hover:bg-gradient-to-t hover:from-slate-300'}
-                 onClick={ data['onClick'] } key={data['key']}>
-                {data['inner_html']}
+                 onClick={ () => this.getDetailView(data['id'])
+                     .then((detail_view) => this.setDetailView(detail_view)) } key={data['key']}>
+                <div className={'flex w-full'}>
+                    <div className={'flex justify-center w-[10%]'}>
+                        <p className={'font-bold text-blue-600/75'}>{data['key']}</p>
+                    </div>
+                    <div className={'flex justify-left w-[90%]'}>
+                        <p className={'font-bold text-slate-600/90'}>{data['title']}</p>
+                    </div>
+                </div>
             </div>
         );
 

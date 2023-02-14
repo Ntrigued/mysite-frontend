@@ -37,27 +37,12 @@ class HNAdapter extends AbstractAdapter {
     }
     let story_id = this.top_stories_ids[this.stories_processed];
     this.stories_processed += 1;
-
     let item_info = await this.getBasicItemInfo(story_id);
     this.items_created += 1;
-    const inner_html = (
-        <div className={'flex w-full'}>
-          <div className={'flex justify-center w-1/10'}>
-            <p className={'font-bold text-blue-600/75'}>{this.items_created }.</p>
-          </div>
-          <div className={'flex justify-left w-9/10'}>
-            <p className={'font-bold text-slate-600/90'}>{item_info.title}.</p>
-          </div>
-        </div>
-    );
-    let data = {
-      'id': story_id,
-      'onClick': () => this.getDetailView(story_id).then((detail_view) => this.setDetailView(detail_view)),
-      'key': this.items_created,
-      'inner_html': inner_html,
-    }
+    item_info['id'] = story_id;
+    item_info['key'] = this.items_created;
 
-    return data;
+    return item_info;
   }
 
   async tryForNextNItems(N) {
