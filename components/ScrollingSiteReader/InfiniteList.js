@@ -10,19 +10,16 @@ import React, { useState, useRef, useEffect } from 'react';
 
 function InfiniteList(props) {
   const adapter = props.adapter;
-  const setDetailView = props.setDetailView;
   let reload_amount = adapter.reload_amount;
   const [items, setItems] = useState(props.initial_items);
   const listElem = useRef(undefined);
   // Replace with any updates from parent component
   useEffect(() => setItems(props.initial_items), [props.initial_items]);
 
-  console.log('props initial_items:', props.initial_items);
   function maybeUpdate() {
     let el = listElem.current;
     let max_height = el.scrollHeight - el.offsetHeight;
     let scroll_percent = el.scrollTop / max_height;
-    console.log(scroll_percent, reload_amount);
     if(scroll_percent > reload_amount) {
       adapter.getNextBatch().then(new_items => {
         setItems( [...items, ...new_items] );

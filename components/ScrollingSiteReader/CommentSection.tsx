@@ -19,7 +19,7 @@ export default function CommentSection(props: any) {
      */
     const adapter = props.adapter;
     const is_visible: Boolean = props.is_visible == null ? false : props.is_visible;
-    const comment_ids: Array<string | Number> = props.comment_ids;
+    const comment_ids: Array<string | Number> = props.comment_ids ? props.comment_ids : [];
     const [comment_data, setCommentData] = useState<Array<any>>([]);
     const [opened_list, setCommentOpenedList] = useState<Array<Boolean>>([]);
 

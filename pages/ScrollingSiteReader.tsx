@@ -4,7 +4,7 @@ import HNAdapter from '../components/ScrollingSiteReader/Adapters/HNAdapter';
 
 export default function ScrollingSiteReader(props: any) {
     return (
-      <div className={' h-[97.5vh] w-full mt-[2.5vh]'}>
+      <div className={' h-[97.5vh] w-full'}>
         <SiteReaderContainer />
       </div>
     );

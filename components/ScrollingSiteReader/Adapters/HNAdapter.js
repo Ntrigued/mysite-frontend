@@ -5,9 +5,8 @@ import Image from "next/image";
 import url_link_img from 'public/url_link.jpg';
 
 class HNAdapter extends AbstractAdapter {
-  constructor(setDetailView) {
-    super();
-    this.setDetailView = setDetailView;
+  constructor(setInfoForDetailView) {
+    super(setInfoForDetailView);
     this.stories_processed = 0;
     this.items_created = 0;
     this.initial_items = [];
@@ -21,6 +20,7 @@ class HNAdapter extends AbstractAdapter {
   async getBasicItemInfo(item_id) {
     const info = await fetch(this.basic_item_info_endpoint + item_id + ".json")
         .then(response => response.json());
+    console.log('item_info for ' + item_id + ': ', info);
     this.basic_item_info[item_id] = info;
     return info;
   }
@@ -66,7 +66,6 @@ class HNAdapter extends AbstractAdapter {
     this.initial_items_mutex = true;
     this.items_created = 0;
     if(this.top_stories_ids == null) this.top_stories_ids = await this.getTopStoriesIDs();
-    console.log('this.items_created: ', this.items_created);
     let initial_items = await this.tryForNextNItems(50);
     this.initial_items_mutex = false;
     return initial_items;
@@ -103,14 +102,20 @@ class HNAdapter extends AbstractAdapter {
     });
   }
 
-  async getDetailView(item_id) {
+  async getDetailInfo(item_id) {
     const item_info = await this.getBasicItemInfo(item_id);
-
-    const children = item_info['kids'];
-    const user = item_info['by'];
     const item_date = new Date(item_info['time'] * 1000);
     const datetime = item_date.toDateString() + ' ' +
-        item_date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        item_date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    item_info['id'] = item_id;
+    item_info['datetime'] = datetime;
+    console.log(item_info);
+    return item_info;
+  }
+
+  getDetailView(item_info) {
+    if(item_info == null) return <></>;
+
     let title = item_info['title'];
     if ('url' in item_info) {
       title = <a href={item_info['url']} target="_blank" rel="noreferrer" className={'hover:underline'}>
@@ -128,7 +133,7 @@ class HNAdapter extends AbstractAdapter {
             {content}
           </div>
           <div className={'flex flex-col flex-wrap'}>
-            <CommentSection adapter={this} key={item_id} comment_ids={children} is_visible={true} />
+            <CommentSection adapter={this} key={item_info['id']} comment_ids={item_info['kids']} is_visible={true} />
           </div>
         </div>
     );
