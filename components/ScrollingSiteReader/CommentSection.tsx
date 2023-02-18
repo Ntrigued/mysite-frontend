@@ -47,7 +47,6 @@ export default function CommentSection(props: any) {
                 'bg-gradient-to-b from-transparent to-[#94a3b85c]'}>
                 <div className={'flex flex-col'}
                      onClick={() => {
-                         console.log('updating opened_list for ', idx);
                          let new_opened = [...opened_list];
                          new_opened[idx] = !new_opened[idx];
                          setCommentOpenedList(new_opened);

@@ -109,7 +109,6 @@ class HNAdapter extends AbstractAdapter {
         item_date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
     item_info['id'] = item_id;
     item_info['datetime'] = datetime;
-    console.log(item_info);
     return item_info;
   }
 
