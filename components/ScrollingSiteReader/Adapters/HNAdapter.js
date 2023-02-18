@@ -20,7 +20,6 @@ class HNAdapter extends AbstractAdapter {
   async getBasicItemInfo(item_id) {
     const info = await fetch(this.basic_item_info_endpoint + item_id + ".json")
         .then(response => response.json());
-    console.log('item_info for ' + item_id + ': ', info);
     this.basic_item_info[item_id] = info;
     return info;
   }

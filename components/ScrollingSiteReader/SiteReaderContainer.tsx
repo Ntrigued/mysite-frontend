@@ -5,6 +5,7 @@ import DummyAdapter from "./Adapters/DummyAdapter";
 import HNAdapter from "./Adapters/HNAdapter";
 import {Simulate} from "react-dom/test-utils";
 import load = Simulate.load;
+import {isNumber} from "util";
 //import './App.css';
 
 
@@ -13,7 +14,7 @@ const loadItemFromIdField = (adapter: AbstractAdapter, setInfoForDetailView: Dis
         const item_id = document.getElementById('item_id_field')?.value;
         adapter.getDetailInfo(item_id).then((detail_info) => setInfoForDetailView(detail_info));
     } catch(error) {
-        console.log('error: ', error);
+        console.error('error: ', error);
     }
 }
 
@@ -38,22 +39,23 @@ function SiteReaderContainer(props: any) {
 
     const detail_view = adapter.getDetailView(detail_item_info);
     return (
-        <div className={'flex flex-col h-full w-full'}>
-            <div className={'flex w-full h-full pt-[2.5vh]'}>
-                <div className={'flex h-full w-1/3'}>
+        <div className={'flex  flex-col h-full w-full'}>
+            <div className={'flex flex-col md:flex-row w-full h-full pt-[2.5vh]'}>
+                <div className={'flex h-[50%] md:h-full w-full md:w-1/3'}>
                     <InfiniteList adapter={ adapter } initial_items={list_items} />
                 </div>
-                <div className={'flex h-full w-2/3'} >
+                <div className={'flex h-[50%] w-full md:h-full md:w-2/3'} >
                     { detail_view }
                 </div>
             </div>
-            <div className={' absolute bottom-0 right-[7.5vw] md:w-[20vw] h-[10%] bg-slate-500 rounded-tr-lg'}>
-                <div className={'h-[50%] h-full bg-sky-500 rounded-tr-lg'}>
-                    <input id={'item_id_field'} type={'text'} className={'w-75%'}
+            <div className={'flex flex-col absolute bottom-0 right-[7.5vw] md:w-[20vw] h-[10%] bg-slate-500 rounded-t-lg'}>
+                <div className={'flex h-[50%]'}>
+                    <input id={'item_id_field'} className={'w-[75%] border-4'} type={'text'} placeholder={'Enter item ID'}
                     onKeyDown={(e) => {if(e.key == 'Enter') loadItemFromIdField(adapter, setInfoForDetailView)}}>
-                        </input>
-                    <button className={'w-[25%]'} onClick={() => loadItemFromIdField(adapter, setInfoForDetailView)}>
-                        Load</button>
+                    </input>
+                    <button className={'w-[25%] bg-cyan-500 hover:bg-cyan-400'} onClick={() => loadItemFromIdField(adapter, setInfoForDetailView)}>
+                        Load
+                    </button>
                 </div>
                 <div className={'flex h-[50%] w-full justify-around'}>
                     <button onClick={() => setAdapterName('Hacker News')}
