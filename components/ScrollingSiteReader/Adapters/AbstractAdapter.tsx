@@ -1,11 +1,11 @@
 import React, {Dispatch, SetStateAction, useState} from 'react';
 
-export default class AbstractAdapter {
+export default abstract class AbstractAdapter {
     // Don't call getInitial while its running, a problem thanks to double-rendering
     initial_items_mutex: Boolean = false;
     setInfoForDetailView: Dispatch<SetStateAction<any>>
 
-    constructor(setInfoForDetailView: Dispatch<SetStateAction<any>>) {
+    protected constructor(setInfoForDetailView: Dispatch<SetStateAction<any>>) {
         this.setInfoForDetailView = setInfoForDetailView;
     }
     
