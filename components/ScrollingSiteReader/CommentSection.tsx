@@ -32,7 +32,9 @@ export default function CommentSection(props: any) {
         }
     }, [props.is_visible]);
 
-    let comment_components: JSX.Element[] = comment_data.map((item: any, idx) => {
+    let comment_components: JSX.Element[] = comment_data
+        .filter((item) => 'comment' in item && item['comment'].trim().length > 0)
+        .map((item: any, idx) => {
         let item_id = item['comment_id'];
         let comment = item['comment'];
         let username = item['username'];

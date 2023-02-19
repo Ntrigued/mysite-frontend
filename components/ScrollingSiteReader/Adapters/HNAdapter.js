@@ -4,6 +4,7 @@ import CommentSection from "../CommentSection";
 import Image from "next/image";
 import url_link_img from 'public/url_link.jpg';
 
+
 class HNAdapter extends AbstractAdapter {
   constructor(setInfoForDetailView) {
     super(setInfoForDetailView);
@@ -20,6 +21,8 @@ class HNAdapter extends AbstractAdapter {
   async getBasicItemInfo(item_id) {
     const info = await fetch(this.basic_item_info_endpoint + item_id + ".json")
         .then(response => response.json());
+    if(info == null) throw new Error('RESPONSE_MISSING_DATA');
+
     this.basic_item_info[item_id] = info;
     return info;
   }
@@ -47,7 +50,11 @@ class HNAdapter extends AbstractAdapter {
   async tryForNextNItems(N) {
     let row_promises = [];
     for(let i = 0; i < N; i++) {
-      row_promises.push(this.getNextItem());
+      try {
+        row_promises.push(this.getNextItem());
+      } catch(e) {
+        console.error('Error when fetching next list item: ', err);
+      }
     }
     return Promise.allSettled(row_promises)
         .then((items) => {
@@ -97,7 +104,10 @@ class HNAdapter extends AbstractAdapter {
     let comment_promises = item_ids.map((item_id) => this.getComment(item_id));
     return Promise.allSettled(comment_promises).then((settled_promises) => {
       return settled_promises.filter((prom) => prom.status === 'fulfilled')
-          .map((item) => item.value);
+          .map((item) => item.value)
+          .filter((item) => {
+            return 'comment' in item && item['comment'] != null && item['comment'].trim().length > 0
+          });
     });
   }
 
