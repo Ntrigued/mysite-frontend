@@ -30,7 +30,7 @@ export default function CommentSection(props: any) {
                 setCommentOpenedList(Array(data.length).fill(false));
             });
         }
-    }, [is_visible, comment_data.length]);
+    }, [adapter, comment_ids, is_visible, comment_data.length]);
 
     let comment_components: JSX.Element[] = comment_data
         .filter((item) => 'comment' in item && item['comment'].trim().length > 0)

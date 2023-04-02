@@ -130,6 +130,7 @@ class HNAdapter extends AbstractAdapter {
   getDetailView(item_info) {
     if(item_info == null) return <></>;
 
+    let username = item_info['by'];
     let title = item_info['title'];
     if ('url' in item_info) {
       title = <a href={item_info['url']} target="_blank" rel="noreferrer" className={'hover:underline'}>
@@ -142,11 +143,13 @@ class HNAdapter extends AbstractAdapter {
                                            dangerouslySetInnerHTML={{__html: item_info['text']}}></div>;
     return (
         <div className={'flex flex-col w-full h-full overflow-y-scroll'}>
-          <div className={'pl-[5%] flex flex-wrap'}>
+          <div className={'pl-[5%] flex flex-col'}>
             <h2 className={'text-2xl'}>{title}</h2>
+            <div className={'flex flex-row justify-start min-w-[15%]'}>
+              Submitted by: <span className={'font-bold ml-[0.5%]'}>{username}</span></div>
             {content}
           </div>
-          <div className={'flex flex-col flex-wrap'}>
+          <div className={'flex flex-col flex-wrap border-t-2'}>
           {item_info['kids'] && item_info['kids'].length
             ? <CommentSection adapter={this} key={item_info['id']}
                                comment_ids={item_info['kids']} is_visible={true} />

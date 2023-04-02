@@ -4,6 +4,7 @@ import AbstractAdapter from "./Adapters/AbstractAdapter";
 const loadItemFromIdField = (adapter: AbstractAdapter,
                              setInfoForDetailView: Dispatch<SetStateAction<any>>) => {
     try {
+        // @ts-ignore
         const item_id = document.getElementById('item_id_field')?.value;
         if(item_id != null && item_id.length > 0) {
             adapter.getDetailInfo(item_id)

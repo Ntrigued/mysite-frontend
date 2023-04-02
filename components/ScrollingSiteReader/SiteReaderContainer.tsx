@@ -1,7 +1,5 @@
 import React, {Dispatch, SetStateAction, useEffect, useMemo, useState} from 'react';
 import InfiniteList from "./InfiniteList";
-import AbstractAdapter from "./Adapters/AbstractAdapter";
-import DummyAdapter from "./Adapters/DummyAdapter";
 import HNAdapter from "./Adapters/HNAdapter";
 import BottomMenu from "./BottomMenu";
 
