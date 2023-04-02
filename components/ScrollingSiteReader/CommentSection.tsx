@@ -30,7 +30,7 @@ export default function CommentSection(props: any) {
                 setCommentOpenedList(Array(data.length).fill(false));
             });
         }
-    }, [props.is_visible]);
+    }, [is_visible, comment_data.length]);
 
     let comment_components: JSX.Element[] = comment_data
         .filter((item) => 'comment' in item && item['comment'].trim().length > 0)
@@ -55,7 +55,7 @@ export default function CommentSection(props: any) {
                      }}>
                     <div className={'flex flex-row justify-start ml-[2.5%] min-w-[15%] font-bold'}>
                         {username}</div>
-                    <div className={' flex flex-col justify-start py-[1vh] pl-[1.25%]'}
+                    <div className={' flex flex-col justify-start py-[1vh] pl-[1.25%] whitespace-pre-wrap'}
                         dangerouslySetInnerHTML={{__html: comment}}>
                     </div>
                     <div className={'flex flex-row items-center justify-items-center w-full'}>

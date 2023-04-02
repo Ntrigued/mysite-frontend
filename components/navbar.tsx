@@ -9,9 +9,9 @@ export default function NavBar() {
     const [maybe_hidden, setMaybeHidden] = useState<string>( 'hidden');
 
 
-    const navbar_link_styles = ' ' + 'flex font-medium text-black/80 text-center' + ' '+
-                                'md:inline md:px-[1.5%] md:py-[1%]' + ' ' +
-                                'xl:px-inherit xl:pb-inherit xl:text-md' + ' ';
+    const navbar_link_styles = maybe_hidden + ' font-medium text-black/80 text-center' + ' '+
+                                 'md:flex md:px-[1.5%] md:py-[1%]' + ' ' +
+                                'xl:flex-col xl:px-inherit xl:pb-inherit xl:text-md' + ' ';
     // @ts-ignore
     return (
         <nav id={'outerNav'} className={'bg-slate-500 flex flex-col shrink-0 items-center justify-items-center ' +
@@ -19,21 +19,22 @@ export default function NavBar() {
                                         'xl:flex-col xl:mt-[1%] xl:mb-[3%] xl:w-[7.5%] '+
                                         'xl:rounded-br-xl xl:rounded-tr-xl xl:justify-items-center'}>
             <div className={'px-[2.5%] self-start md:hidden'}
-                 onClick={() => maybe_hidden == 'hidden' ? setMaybeHidden('') : setMaybeHidden('hidden')}>
+                 onClick={() => maybe_hidden == 'hidden' ? setMaybeHidden('flex') : setMaybeHidden('hidden')}>
                 <Image src={'/navbar_icon.png'}
                        alt={"icon for opening navbar"}
                         width={45} height={45}/>
             </div>
-            <div className={maybe_hidden + navbar_link_styles + ' xl:pt-[20%] '}>
+            <div className={navbar_link_styles + ' xl:pt-[20%] '}>
                 <Link href={'/'}>Home</Link>
             </div>
-            <div className={maybe_hidden + navbar_link_styles + ' xl:pt-[10%] '}>
+            <div className={navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/ScrollingSiteReader'}>HN Reader</Link>
             </div>
-            <div className={maybe_hidden + navbar_link_styles + ' xl:pt-[10%] '}>
+            <div className={navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/about'} className={'word-'}>About Me</Link>
             </div>
-            <div className={maybe_hidden + navbar_link_styles + ' xl:flex xl:items-end xl:grow xl:mb-[2.5vh]'}>
+            <div className={navbar_link_styles + ' my-[2.5%] md:my-0 ' +
+                'md:grow md:justify-end xl:mb-[2.5vh]'}>
                 <SocialMediaWidgets />
             </div>
         </nav>

@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import ListItem from "./ListItem";
 
 
 /*
@@ -11,26 +12,28 @@ import React, { useState, useRef, useEffect } from 'react';
 function InfiniteList(props) {
   const adapter = props.adapter;
   let reload_amount = adapter.reload_amount;
-  const [items, setItems] = useState(props.initial_items);
+  const [item_ids, setItemIds] = useState(props.initial_ids);
   const listElem = useRef(undefined);
   // Replace with any updates from parent component
-  useEffect(() => setItems(props.initial_items), [props.initial_items]);
+  useEffect(() => setItemIds(props.initial_ids), [props.initial_ids]);
 
   function maybeUpdate() {
     let el = listElem.current;
     let max_height = el.scrollHeight - el.offsetHeight;
     let scroll_percent = el.scrollTop / max_height;
     if(scroll_percent > reload_amount) {
-      adapter.getNextBatch().then(new_items => {
-        setItems( [...items, ...new_items] );
+      adapter.getNextBatch().then(new_item_ids => {
+        console.log("updating with: ", new_item_ids);
+        setItemIds( [...item_ids, ...new_item_ids] );
       });
     }
   }
 
-  const list_elems = items.map((item_info) => adapter.buildListItem(item_info));
   return (
     <div ref={listElem} onScroll={maybeUpdate} className={'flex flex-col items-center w-full h-full overflow-y-scroll'}>
-      { list_elems }
+      { item_ids.map((item_id, idx) => {
+        return <ListItem key={item_id} idx={idx+1}  adapter={adapter} item_id={item_id} />
+      }) }
     </div>
   );
 }

@@ -6,7 +6,7 @@ export default function ScrollingSiteReader(props: any) {
     const query_client = new QueryClient();
 
     return (
-      <div className={' h-[97.5vh] w-full'}>
+      <div className={' h-full w-full'}>
         <QueryClientProvider client={query_client} >
             <SiteReaderContainer />
         </QueryClientProvider>

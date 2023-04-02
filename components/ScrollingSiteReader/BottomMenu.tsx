@@ -22,21 +22,24 @@ function BottomMenu(props: any) {
 
     return (
         <>
-            <div className={'flex h-[50%]'}>
+            <div className={'flex h-full'}>
                 <input id={'item_id_field'} className={'w-[75%] border-4'} type={'text'} placeholder={'Enter item ID'}
                        onKeyDown={(e) => {if(e.key == 'Enter') loadItemFromIdField(adapter, setInfoForDetailView)}}>
                 </input>
-                <button className={'w-[25%] bg-cyan-500 hover:bg-cyan-400'}
+                <button className={'w-[25%] text-center bg-cyan-500 hover:bg-cyan-400'}
                         onClick={() => loadItemFromIdField(adapter, setInfoForDetailView)}>
                     Load
                 </button>
             </div>
-            <div className={'flex h-[50%] w-full justify-around'}>
-                <button onClick={() => setAdapterName('Hacker News')}
-                        className={'flex grow-1 h-full align-center items-center'}>Hacker News</button>
-                <button className={'flex grow-1 h-full align-middle items-center cursor-not-allowed'}
-                        disabled onClick={() => setAdapterName('Reddit')}>Reddit (Coming Soon)</button>
-            </div>
+            {/*
+                <div className={'flex min-h-[50%] h-[50%] w-full justify-around'}>
+                    <button className={'flex h-full align-middle items-center'}
+                            onClick={() => setAdapterName('Hacker News')}
+                    >Hacker News</button>
+                    <button className={'flex h-full align-middle items-center cursor-not-allowed'}
+                            onClick={() => setAdapterName('Reddit')} disabled>Reddit (Coming Soon)</button>
+                </div>
+            */}
         </>
     );
 }

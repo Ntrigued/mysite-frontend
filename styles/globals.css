@@ -28,3 +28,9 @@ a {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  pre {
+    white-space: pre-wrap; /* prevent <pre> tags in Hacker News comments from overflowing their div */
+  }
+}

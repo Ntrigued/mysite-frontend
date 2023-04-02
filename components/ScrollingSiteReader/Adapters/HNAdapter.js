@@ -1,8 +1,9 @@
 import AbstractAdapter  from "./AbstractAdapter";
-import React from "react";
 import CommentSection from "../CommentSection";
-import Image from "next/image";
 import url_link_img from 'public/url_link.jpg';
+
+import Image from "next/image";
+import React from "react";
 
 
 class HNAdapter extends AbstractAdapter {
@@ -21,11 +22,16 @@ class HNAdapter extends AbstractAdapter {
   async getBasicItemInfo(item_id) {
     const info = await fetch(this.basic_item_info_endpoint + item_id + ".json")
         .then(response => response.json());
-    if(info == null) throw new Error('RESPONSE_MISSING_DATA');
-
+    if(info == null) throw new Error('RESPONSE_MISSING_DATA for item ', item_id);
     this.basic_item_info[item_id] = info;
     return info;
   }
+
+  async getItemTitle(item_id) {
+    const info = await this.getBasicItemInfo(item_id);
+    return info['title'];
+  }
+
 
   async getTopStoriesIDs() {
     return fetch(this.top_stories_endpoint)
@@ -72,13 +78,13 @@ class HNAdapter extends AbstractAdapter {
     this.initial_items_mutex = true;
     this.items_created = 0;
     if(this.top_stories_ids == null) this.top_stories_ids = await this.getTopStoriesIDs();
-    let initial_items = await this.tryForNextNItems(50);
+    const initial_items = this.top_stories_ids.splice(0, 50);
     this.initial_items_mutex = false;
     return initial_items;
   }
 
   async getNextBatch() {
-    return this.tryForNextNItems(5);
+    return this.top_stories_ids.splice(0, 5);
   }
 
   async getComment(item_id) {
@@ -141,7 +147,11 @@ class HNAdapter extends AbstractAdapter {
             {content}
           </div>
           <div className={'flex flex-col flex-wrap'}>
-            <CommentSection adapter={this} key={item_info['id']} comment_ids={item_info['kids']} is_visible={true} />
+          {item_info['kids'] && item_info['kids'].length
+            ? <CommentSection adapter={this} key={item_info['id']}
+                               comment_ids={item_info['kids']} is_visible={true} />
+            : <p className={'italic'}>No Comments</p>
+          }
           </div>
         </div>
     );
