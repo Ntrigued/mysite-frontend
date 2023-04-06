@@ -28,7 +28,7 @@ function SiteReaderContainer(props: any) {
     const detail_view = adapter.getDetailView(detail_item_info);
     return (
         <div className={'flex flex-col h-full w-full'}>
-            <div className={'flex flex-col md:flex-row w-full h-full pt-[2.5vh]'}>
+            <div className={'flex flex-col md:flex-row w-full h-full'}>
                 <div className={'flex h-[50%] md:h-full w-full md:w-1/3'}>
                     <InfiniteList adapter={adapter} initial_ids={list_item_ids} />
                 </div>

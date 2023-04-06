@@ -11,12 +11,12 @@ export default function NavBar() {
 
     const navbar_link_styles = maybe_hidden + ' font-medium text-black/80 text-center' + ' '+
                                  'md:flex md:px-[1.5%] md:py-[1%]' + ' ' +
-                                'xl:flex-col xl:px-inherit xl:pb-inherit xl:text-md' + ' ';
+                                'xl:flex-col xl:px-inherit xl:pb-inherit xl:text-lg' + ' ';
     // @ts-ignore
     return (
-        <nav id={'outerNav'} className={'bg-slate-500 flex flex-col shrink-0 items-center justify-items-center ' +
-                                        'md:flex-row md:justify-items-left '+
-                                        'xl:flex-col xl:mt-[1%] xl:mb-[3%] xl:w-[7.5%] '+
+        <nav id={'outerNav'} className={'bg-slate-500 flex flex-col w-full items-center justify-items-center ' +
+                                        'md:flex-row md:justify-items-left ' +
+                                        'xl:flex-col xl:mt-[1%] xl:mb-[3%] ' +
                                         'xl:rounded-br-xl xl:rounded-tr-xl xl:justify-items-center'}>
             <div className={'px-[2.5%] self-start md:hidden'}
                  onClick={() => maybe_hidden == 'hidden' ? setMaybeHidden('flex') : setMaybeHidden('hidden')}>
