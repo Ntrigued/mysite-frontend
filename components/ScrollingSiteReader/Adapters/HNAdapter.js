@@ -149,7 +149,7 @@ class HNAdapter extends AbstractAdapter {
               Submitted by: <span className={'font-bold ml-[0.5%]'}>{username}</span></div>
             {content}
           </div>
-          <div className={'flex flex-col flex-wrap border-t-2'}>
+          <div className={'flex flex-col flex-wrap border-t-2 hacker-news-comment-section'}>
           {item_info['kids'] && item_info['kids'].length
             ? <CommentSection adapter={this} key={item_info['id']}
                                comment_ids={item_info['kids']} is_visible={true} />

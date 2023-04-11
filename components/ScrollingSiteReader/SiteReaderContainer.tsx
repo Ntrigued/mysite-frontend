@@ -32,11 +32,12 @@ function SiteReaderContainer(props: any) {
                 <div className={'flex h-[50%] md:h-full w-full md:w-1/3'}>
                     <InfiniteList adapter={adapter} initial_ids={list_item_ids} />
                 </div>
-                <div className={'flex h-[50%] w-full md:h-full md:w-2/3'} >
+                <div className={'flex h-[50%] w-full border-t-8 border-solid border-[#edeef1] ' +
+                                'md:h-full md:w-2/3 md:border-0'} >
                     { detail_view }
                 </div>
             </div>
-            <div className={'flex flex-col grow absolute bottom-0 right-[7.5vw] md:w-[20vw] h-[6%] ' +
+            <div className={'flex flex-col grow fixed bottom-0 right-[7.5vw] md:w-[20vw] h-[6%] ' +
                 'rounded-t-lg'}>
                 <BottomMenu adapter={adapter}
                             setInfoForDetailView={setInfoForDetailView}

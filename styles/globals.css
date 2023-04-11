@@ -30,7 +30,8 @@ a {
 @tailwind utilities;
 
 @layer base {
-  pre {
+  .hacker-news-comment-section * {
+    overflow-wrap: break-word;
     white-space: pre-wrap; /* prevent <pre> tags in Hacker News comments from overflowing their div */
   }
 }
