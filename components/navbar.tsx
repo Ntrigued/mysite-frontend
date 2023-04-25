@@ -28,7 +28,7 @@ export default function NavBar() {
                 <Link href={'/'}>Home</Link>
             </div>
             <div className={navbar_link_styles + ' xl:pt-[10%] '}>
-                <Link href={'/ScrollingSiteReader'}>HN Reader</Link>
+                <Link href={'/HackerNewsReader'}>HN Reader</Link>
             </div>
             <div className={navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/about'} className={'word-'}>About Me</Link>
