@@ -9,12 +9,14 @@ export default function SocialMediaWidgets() {
         .then(response => response.text())
         .then(text => {
             return new Promise((resolve, reject) => {
-                const script = document.createElement('script');
-                script.async = true;
-                script.onload = resolve;
-                script.onerror = reject;
-                script.src = "https://platform.twitter.com/widgets.js";
-                document.head.appendChild(script);
+                if(typeof window !== 'undefined') {
+                    const script = document.createElement('script');
+                    script.async = true;
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    script.src = "https://platform.twitter.com/widgets.js";
+                    document.head.appendChild(script);
+                }
             });
         })
 
