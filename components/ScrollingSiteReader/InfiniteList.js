@@ -23,7 +23,6 @@ function InfiniteList(props) {
     let scroll_percent = el.scrollTop / max_height;
     if(scroll_percent > reload_amount) {
       adapter.getNextBatch().then(new_item_ids => {
-        console.log("updating with: ", new_item_ids);
         setItemIds( [...item_ids, ...new_item_ids] );
       });
     }

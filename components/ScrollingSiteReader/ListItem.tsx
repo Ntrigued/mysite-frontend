@@ -12,31 +12,32 @@ function ListItem(props: any) {
     const isComplete = !isLoading && !isError;
     if(isError) {
         return;
-    }
-    return (
-        <div className={'cursor-pointer flex w-full pt-[1vh] pb-[0.5vh] ' +
-            'bg-gradient-to-b from-slate-200 to-white hover:bg-gradient-to-t hover:from-slate-300'}
-             onClick={ () => adapter.getDetailInfo(item_id)
-                 .then((detail_info: any) => adapter.setInfoForDetailView(detail_info)) }>
-            <div className={'flex w-full'}>
-                {isLoading &&
-                    <div className={'w-full '}>
-                        Loading...
-                    </div>
-                }
-                {isComplete  &&
-                    <>
-                        <div className={'flex justify-center w-[10%]'}>
-                            <p className={'font-bold text-blue-600/75'}>{idx}</p>
+    } else {
+        return (
+            <div className={'cursor-pointer flex w-full pt-[1vh] pb-[0.5vh] ' +
+                'bg-gradient-to-b from-slate-200 to-white hover:bg-gradient-to-t hover:from-slate-300'}
+                 onClick={ () => adapter.getDetailInfo(item_id)
+                     .then((detail_info: any) => adapter.setInfoForDetailView(detail_info)) }>
+                <div className={'flex w-full'}>
+                    {isLoading &&
+                        <div className={'w-full '}>
+                            Loading...
                         </div>
-                        <div className={'flex justify-left w-[90%]'}>
-                            <p className={'font-bold text-slate-600/90'}>{data}</p>
-                        </div>
-                    </>
-                }
+                    }
+                    {isComplete  &&
+                        <>
+                            <div className={'flex justify-center w-[10%]'}>
+                                <p className={'font-bold text-blue-600/75'}>{idx}</p>
+                            </div>
+                            <div className={'flex justify-left w-[90%]'}>
+                                <p className={'font-bold text-slate-600/90'}>{data}</p>
+                            </div>
+                        </>
+                    }
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default ListItem;

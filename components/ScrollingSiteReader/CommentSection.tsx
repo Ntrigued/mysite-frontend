@@ -28,7 +28,7 @@ export default function CommentSection(props: any) {
             adapter.getComments(comment_ids).then((data: Array<any>) => {
                 setCommentData(data);
                 setCommentOpenedList(Array(data.length).fill(false));
-            });
+            }).catch((err: Error) => console.error('There was an error getting comment info: ', err));
         }
     }, [adapter, comment_ids, is_visible, comment_data.length]);
 

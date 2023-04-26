@@ -19,9 +19,9 @@ function SiteReaderContainer(props: any) {
             adapter.getInitial().then((initial_ids) => {
                 adapter.getDetailInfo(initial_ids[0])
                     .then((detail_info) => setInfoForDetailView(detail_info))
-                    .catch((err) => console.log('Error loading detail info: ', err));
+                    .catch((err) => console.error('Error loading detail info: ', err));
                 setListItemIds(initial_ids);
-            });
+            }).catch((err) => console.error('Could not load initial data: ', err));
         }
     }, [adapter]);
 
