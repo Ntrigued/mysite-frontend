@@ -20,9 +20,14 @@ function ListItem(props: any) {
                      .then((detail_info: any) => adapter.setInfoForDetailView(detail_info)) }>
                 <div className={'flex w-full'}>
                     {isLoading &&
-                        <div className={'w-full '}>
-                            Loading...
-                        </div>
+                        <>
+                            <div className={'flex justify-center w-[10%]'}>
+                                <p className={'font-bold text-blue-600/75'}>{idx}</p>
+                            </div>
+                            <div className={'flex justify-left w-[90%]'}>
+                                <p className={'text-slate-600/90'}>Loading Info...</p>
+                            </div>
+                        </>
                     }
                     {isComplete  &&
                         <>
