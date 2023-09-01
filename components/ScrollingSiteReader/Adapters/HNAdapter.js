@@ -7,8 +7,8 @@ import React from "react";
 
 
 class HNAdapter extends AbstractAdapter {
-  constructor(setInfoForDetailView) {
-    super(setInfoForDetailView);
+  constructor() {
+    super();
     this.stories_processed = 0;
     this.items_created = 0;
     this.initial_items = [];

@@ -9,9 +9,9 @@ function SiteReaderContainer(props: any) {
     const[list_item_ids, setListItemIds] = useState<string[] | Number[]>([]);
     const [detail_item_info, setInfoForDetailView] = useState(null);
     const adapter = useMemo(() => {
-        //if(adapter_name == 'Dummy') return new DummyAdapter(setInfoForDetailView);
-        if(adapter_name == 'Hacker News') return new HNAdapter(setInfoForDetailView);
-        else return new HNAdapter(setInfoForDetailView);
+        //if(adapter_name == 'Dummy') return new DummyAdapter();
+        if(adapter_name == 'Hacker News') return new HNAdapter();
+        else return new HNAdapter();
     }, [adapter_name]);
 
     useEffect(() => {

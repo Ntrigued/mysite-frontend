@@ -4,11 +4,6 @@ import ListItem from "../ListItem";
 export default abstract class AbstractAdapter {
     // Don't call getInitial while its running, a problem thanks to double-rendering
     initial_items_mutex: Boolean = false;
-    setInfoForDetailView: Dispatch<SetStateAction<any>>
-
-    protected constructor(setInfoForDetailView: Dispatch<SetStateAction<any>>) {
-        this.setInfoForDetailView = setInfoForDetailView;
-    }
 
     abstract getCommentById(id: Number | string): Promise<JSX.Element>;
     abstract getComments(item_id: Array<Number | string>): Promise<Array<any>>;

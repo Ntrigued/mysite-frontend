@@ -11,7 +11,7 @@ function ListItem(props: any) {
 
     const isComplete = !isLoading && !isError;
     if(isError) {
-        return;
+        return <></>;
     } else {
         return (
             <div className={'cursor-pointer flex w-full pt-[1vh] pb-[0.5vh] ' +
