@@ -24,15 +24,15 @@ export default function NavBar() {
                        alt={"icon for opening navbar"}
                         width={45} height={45}/>
             </div>
-            <div className={navbar_link_styles + ' xl:pt-[20%] '}>
+            { /* <div className={navbar_link_styles + ' xl:pt-[20%] '}>
                 <Link href={'/'}>Home</Link>
-            </div>
-            <div className={navbar_link_styles + ' xl:pt-[10%] '}>
+            </div> */}
+            <div className={navbar_link_styles + ' xl:pt-[20%] '}>
                 <Link href={'/HackerNewsReader'}>HN Reader</Link>
             </div>
-            <div className={navbar_link_styles + ' xl:pt-[10%] '}>
+            { /* <div className={navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/about'} className={'word-'}>About Me</Link>
-            </div>
+            </div> */ }
             <div className={navbar_link_styles + ' my-[2.5%] md:my-0 ' +
                 'md:grow md:justify-end xl:mb-[2.5vh]'}>
                 <SocialMediaWidgets />

@@ -30,7 +30,10 @@ function SiteReaderContainer(props: any) {
         <div className={'flex flex-col h-full w-full'}>
             <div className={'flex flex-col md:flex-row w-full h-full'}>
                 <div className={'flex h-[50%] md:h-full w-full md:w-1/3'}>
-                    <InfiniteList adapter={adapter} initial_ids={list_item_ids} />
+                    <InfiniteList adapter={adapter}
+                                  initial_ids={list_item_ids}
+                                  setInfoForDetailView={setInfoForDetailView}
+                    />
                 </div>
                 <div className={'flex h-[50%] w-full border-t-8 border-solid border-[#edeef1] ' +
                                 'md:h-full md:w-2/3 md:border-0'} >

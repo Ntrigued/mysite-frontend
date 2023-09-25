@@ -16,8 +16,12 @@ react_query.useQuery = jest.fn((queryKey, queryFn) => {
 
 describe('ListItem Tests', () => {
     it('Title Exists', () => {
-
         const {getByText} = render(<ListItem key={1} idx={2}  adapter={new mockAdapter()} item_id={1} />);
         expect(getByText('Mock Title')).toBeInTheDocument();
     });
+
+    /*it('', () => {
+        const {asFragment, getByText} = render(<ListItem key={1} idx={2}  adapter={new mockAdapter()} item_id={1} />);
+        asFragment.
+    });*/
 })

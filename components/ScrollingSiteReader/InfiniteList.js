@@ -10,6 +10,7 @@ import ListItem from "./ListItem";
 */
 
 function InfiniteList(props) {
+  const setInfoForDetailView = props.setInfoForDetailView
   const adapter = props.adapter;
   let reload_amount = adapter.reload_amount;
   const [item_ids, setItemIds] = useState(props.initial_ids);
@@ -31,7 +32,8 @@ function InfiniteList(props) {
   return (
     <div ref={listElem} onScroll={maybeUpdate} className={'flex flex-col items-center w-full h-full overflow-y-scroll'}>
       { item_ids.map((item_id, idx) => {
-        return <ListItem key={item_id} idx={idx+1}  adapter={adapter} item_id={item_id} />
+        return <ListItem key={item_id} idx={idx+1}  adapter={adapter} item_id={item_id}
+                         setInfoForDetailView={setInfoForDetailView} />
       }) }
     </div>
   );

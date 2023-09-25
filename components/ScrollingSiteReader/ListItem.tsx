@@ -2,6 +2,7 @@ import React from "react";
 import {useQuery} from "@tanstack/react-query";
 
 function ListItem(props: any) {
+    const setInfoForDetailView = props.setInfoForDetailView;
     const adapter = props.adapter;
     //const data = props.data;
     const item_id = props.item_id;
@@ -17,7 +18,7 @@ function ListItem(props: any) {
             <div className={'cursor-pointer flex w-full pt-[1vh] pb-[0.5vh] ' +
                 'bg-gradient-to-b from-slate-200 to-white hover:bg-gradient-to-t hover:from-slate-300'}
                  onClick={ () => adapter.getDetailInfo(item_id)
-                     .then((detail_info: any) => adapter.setInfoForDetailView(detail_info)) }>
+                     .then((detail_info: any) => setInfoForDetailView(detail_info)) }>
                 <div className={'flex w-full'}>
                     {isLoading &&
                         <>
