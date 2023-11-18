@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import ColorSchemeModal from "./ColorSchemeModal";
 
 import SocialMediaWidgets from "./SocialMediaWidgets";
 
@@ -46,6 +47,9 @@ export default function NavBar() {
             </div> */}
       <div className={navbar_link_styles + " xl:pt-[20%] "}>
         <Link href={"/HackerNewsReader"}>HN Reader</Link>
+      </div>
+      <div className={navbar_link_styles + " xl:pt-[20%] "}>
+        <ColorSchemeModal />
       </div>
       {/* <div className={navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/about'} className={'word-'}>About Me</Link>
