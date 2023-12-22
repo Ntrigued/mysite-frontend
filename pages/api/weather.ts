@@ -14,10 +14,12 @@ export default async function handler(
   } else if (!req.query.q || typeof req.query.q != "string") {
     res.status(400).json({});
   } else {
-    const forecast_base_url = process.env.NEXT_WEATHERAPI_FORECAST_URL;
-    const api_key = process.env.NEXT_WEATHERAPI_API_KEY;
+    let query_string = req.query.q as string;
+    query_string = query_string.trim();
+    const forecast_base_url = process.env.NEXT_WEATHER_API_FORECAST_URL;
+    const api_key = process.env.NEXT_WEATHER_API_KEY;
     const query_url =
-      forecast_base_url + "?key=" + api_key + "&q=" + req.query.q;
+      forecast_base_url + "?key=" + api_key + "&q=" + query_string;
 
     try {
       const json_data = await fetch(query_url).then((resp) => resp.json());
