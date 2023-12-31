@@ -8,12 +8,16 @@ export default function WeatherApp(props: any) {
       .then((data) => {
         console.log("RESOLVED");
         console.log(data);
-        //setWeatherInfo(data);
+        setWeatherInfo(data.weather);
       })
       .catch((e) => {
         console.log("ERROR");
         console.log(e);
       });
-  });
-  return <div></div>;
+  }, []);
+  return (
+    <div>
+      <pre>{JSON.stringify(weather_info, null, 2)}</pre>
+    </div>
+  );
 }

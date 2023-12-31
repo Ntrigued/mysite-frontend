@@ -22,7 +22,7 @@ function checkAllValuesFilled(obj: any) {
   return retval;
 }
 
-function get_weather_info(json_data: any) {
+function parse_weather_info(json_data: any) {
   let days_info: Array<any> = [];
   //console.log(json_data.forecast.forecastday);
   [...Array(3).keys()].forEach((i) => {
@@ -118,7 +118,7 @@ export default async function handler(
     const json_data = await fetch(query_url).then((resp) => resp.json());
     try {
       const json_data = await fetch(query_url).then((resp) => resp.json());
-      let weather_info = get_weather_info(json_data);
+      let weather_info = parse_weather_info(json_data);
       if (!checkAllValuesFilled(weather_info)) {
         throw new Error("values are unfilled");
       }
