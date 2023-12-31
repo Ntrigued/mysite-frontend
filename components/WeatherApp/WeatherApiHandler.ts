@@ -1,4 +1,4 @@
-function allValuesFilled(obj) {
+function allValuesFilled(obj: any) {
   let retval = true;
   if (obj == undefined || obj == null) {
     retval = false;
@@ -15,11 +15,14 @@ function allValuesFilled(obj) {
   return retval;
 }
 
-async function get_weather_info(location_id) {
+export async function get_weather_info(location_id: string) {
   const endpoint = "/api/weather";
   const query_url = endpoint + "?q=" + location_id + "&length=3";
+  console.error("fetching from: ", query_url);
   let res = await fetch(query_url);
   const json_data = await res.json();
+  return json_data;
+
   let days_info: Array<any> = [];
   [...Array(4).keys()].forEach((i) => {
     let forecast_day = json_data.forecast.forecastday[i].day;
@@ -91,8 +94,8 @@ async function get_weather_info(location_id) {
         forecast: days_info,
       }),
     );
-    if(!allValuesFilled(weather_data)) {
-      throw Error('Missing data');
+    if (!allValuesFilled(weather_data)) {
+      throw Error("Missing data");
     }
 
     return weather_data;
