@@ -31,6 +31,8 @@ function parse_weather_info(json_data: any) {
     [...Array(24).keys()].forEach((j) => {
       let forecast_hour = json_data.forecast.forecastday[i].hour[j];
       hours_info[j] = {
+        chance_of_rain: forecast_hour.chance_of_rain,
+        chance_of_snow: forecast_hour.chance_of_snow,
         feelslike_c: forecast_hour.feelslike_c,
         feelslike_f: forecast_hour.feelslike_f,
         temp_c: forecast_hour.temp_c,
@@ -47,14 +49,16 @@ function parse_weather_info(json_data: any) {
         text: forecast_day.condition.text,
         icon: forecast_day.condition.icon,
       },
-      chance_of_rain: forecast_day.daily_chance_of_rain,
-      chance_of_snow: forecast_day.daily_chance_of_snow,
-      maxtemp_c: forecast_day.maxtemp_c,
-      maxtemp_f: forecast_day.maxtemp_f,
-      mintemp_c: forecast_day.mintemp_c,
-      mintemp_f: forecast_day.mintemp_f,
-      avgtemp_c: forecast_day.avgtemp_c,
-      avgtemp_f: forecast_day.avgtemp_f,
+      daily_info: {
+        chance_of_rain: forecast_day.daily_chance_of_rain,
+        chance_of_snow: forecast_day.daily_chance_of_snow,
+        maxtemp_c: forecast_day.maxtemp_c,
+        maxtemp_f: forecast_day.maxtemp_f,
+        mintemp_c: forecast_day.mintemp_c,
+        mintemp_f: forecast_day.mintemp_f,
+        avgtemp_c: forecast_day.avgtemp_c,
+        avgtemp_f: forecast_day.avgtemp_f,
+      },
     };
   });
 

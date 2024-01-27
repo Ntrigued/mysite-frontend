@@ -6,12 +6,12 @@ import WeatherRows from "./WeatherRows";
 
 export default function WeatherApp(props: any) {
   const [weather_info, setWeatherInfo] = useState({});
-
+  console.log(weather_info.forecast);
   useEffect(() => {
     get_weather_info("53718")
       .then((data) => {
         console.log("RESOLVED");
-        console.log(data);
+        //console.log(data);
         setWeatherInfo(data.weather);
       })
       .catch((e) => {
@@ -22,7 +22,7 @@ export default function WeatherApp(props: any) {
   return (
     <div>
       <QuickInfo />
-      <DailyWeatherBoxes />
+      <DailyWeatherBoxes forecast_data={weather_info.forecast} />
       <WeatherRows />
       <pre>{JSON.stringify(weather_info, null, 2)}</pre>
     </div>
