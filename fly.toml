@@ -4,14 +4,12 @@
 #
 
 
-app = 'mysite-frontend'
+app = 'matthew-allbee-frontend'
 primary_region = 'ord'
 
 [build]
   builder = "paketobuildpacks/builder:base"
   buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]
-  #[build.args]
-    #NEXT_PUBLIC_EXAMPLE = 'Value goes here'
 
 [env]
   PORT = '8080'
