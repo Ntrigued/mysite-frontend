@@ -47,6 +47,9 @@ export default function NavBar() {
       <div className={navbar_link_styles + " xl:pt-[20%] "}>
         <Link href={"/HackerNewsReader"}>HN Reader</Link>
       </div>
+      <div className={navbar_link_styles + " xl:pt-[10%] "}>
+        <Link href={"/CodepenPage"}>Code Pens</Link>
+      </div>
       {/* <div className={navbar_link_styles + ' xl:pt-[10%] '}>
                 <Link href={'/about'} className={'word-'}>About Me</Link>
             </div> */}
