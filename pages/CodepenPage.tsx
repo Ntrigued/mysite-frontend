@@ -5,7 +5,7 @@ export default function CodepenPage(params: any) {
     <div>
       <div style={{ marginLeft: "5%", marginTop: "2.5%" }}>
         <p
-          class="codepen"
+          className="codepen"
           data-height="300"
           data-theme-id="dark"
           data-default-tab="result"
