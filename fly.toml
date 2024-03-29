@@ -3,12 +3,15 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
+
 app = 'mysite-frontend'
 primary_region = 'ord'
 
 [build]
-  [build.args]
-    NEXT_PUBLIC_EXAMPLE = 'Value goes here'
+  builder = "paketobuildpacks/builder:base"
+  buildpacks = ["gcr.io/paketo-buildpacks/nodejs"]
+  #[build.args]
+    #NEXT_PUBLIC_EXAMPLE = 'Value goes here'
 
 [env]
   PORT = '8080'
