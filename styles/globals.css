@@ -2,8 +2,18 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 
 a {
@@ -33,5 +43,9 @@ a {
   .hacker-news-comment-section * {
     overflow-wrap: break-word;
     white-space: pre-wrap; /* prevent <pre> tags in Hacker News comments from overflowing their div */
+  }
+
+  /* class used in div that wraps CodePen ifrmae */
+  .cp_embed_wrapper iframe {
   }
 }

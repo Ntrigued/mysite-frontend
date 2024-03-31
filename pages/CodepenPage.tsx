@@ -1,39 +1,55 @@
-import Script from "next/script";
+import { Edu_TAS_Beginner } from "next/font/google";
+
+import CodePen from "../components/CodePen/CodePen";
+
+const edu_tas_font = Edu_TAS_Beginner({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export default function CodepenPage(params: any) {
   return (
-    <div>
-      <div style={{ marginLeft: "5%", marginTop: "2.5%" }}>
-        <p
-          className="codepen"
-          data-height="300"
-          data-theme-id="dark"
-          data-default-tab="result"
-          data-slug-hash="VwgowMX"
-          data-user="allbeematthew"
-          style={{
-            height: "50vh",
-            boxSizing: "border-box",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: "2px solid",
-            margin: "1em 0",
-            padding: "1em",
-          }}
-        >
-          <span>
-            See the Pen{" "}
-            <a href="https://codepen.io/allbeematthew/pen/VwgowMX">2048 game</a>{" "}
-            by Matthew Allbee (
-            <a href="https://codepen.io/allbeematthew">@allbeematthew</a>) on{" "}
-            <a href="https://codepen.io">CodePen</a>.
-          </span>
-        </p>
-        <Script
-          src="https://cpwebassets.codepen.io/assets/embed/ei.js"
-          defer={false}
-        ></Script>
+    <div className="flex flex-col">
+      <h1
+        className={
+          edu_tas_font.className + " text-4xl ml-[2.5%] mt-[1%] md:text-6xl"
+        }
+      >
+        Code Pens
+      </h1>
+      <div className="flex flex-col ml-[2.5%] mt-[2.5%] mr-[2.5%] md:flex-row md:mr-0">
+        <div className="flex flex-col md:w-1/3">
+          <h1 className="text-center text-2xl font-bold mb-[0.5%]">
+            2048 Game
+          </h1>
+          <CodePen
+            slug_hash={"VwgowMX"}
+            user={"allbeematthew"}
+            title={"2048 Game"}
+          />
+          <div id="2048_descr" className="mt-[5%]">
+            <p className="indent-3 text-xl">
+              Written with vanilla Javascript, CSS, and HTML, this pen is a
+              clone of the famous{" "}
+              <a
+                className="underline"
+                href="https://en.wikipedia.org/wiki/2048_(video_game)"
+              >
+                2048
+              </a>{" "}
+              game. The goal of the game is to get a box with a points value of
+              (you may have guessed it) 2048. To play, either use arrow keys or
+              swipe gestures to move the boxes around the grid. If two boxes
+              with the same points value collide, they will be combine into a
+              single box with double the points.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center mt-[7.5%] mb-[2.5%] md:ml-[2.5%] md:mt-[33vh] md:mb-0 md:w-1/3 md:justify-start xl:mt-[25vh]">
+          <p className="text-center text-4xl font-bold">
+            ...With more to come!
+          </p>
+        </div>
       </div>
     </div>
   );
