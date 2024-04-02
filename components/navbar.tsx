@@ -22,7 +22,7 @@ export default function NavBar() {
       className={
         "bg-slate-500 flex flex-col w-full items-center justify-items-center " +
         "md:flex-row md:justify-items-left " +
-        "xl:flex-col xl:mt-[1%] xl:mb-[3%] " +
+        "xl:flex-col xl:mt-[1.25%] xl:mb-[3%] " +
         "xl:rounded-br-xl xl:rounded-tr-xl xl:justify-items-center"
       }
     >
@@ -41,18 +41,18 @@ export default function NavBar() {
           height={45}
         />
       </div>
-      {/* <div className={navbar_link_styles + ' xl:pt-[20%] '}>
-                <Link href={'/'}>Home</Link>
-            </div> */}
       <div className={navbar_link_styles + " xl:pt-[20%] "}>
+        <Link href={"/"}>Home</Link>
+      </div>
+      <div className={navbar_link_styles + " xl:pt-[10%] "}>
         <Link href={"/HackerNewsReader"}>HN Reader</Link>
       </div>
       <div className={navbar_link_styles + " xl:pt-[10%] "}>
         <Link href={"/CodepenPage"}>Code Pens</Link>
       </div>
-      {/* <div className={navbar_link_styles + ' xl:pt-[10%] '}>
-                <Link href={'/about'} className={'word-'}>About Me</Link>
-            </div> */}
+      {/*<div className={navbar_link_styles + " xl:pt-[10%] "}>
+        <Link href={"/AboutMe"}>About Me</Link>
+      </div> */}
       <div
         className={
           navbar_link_styles +

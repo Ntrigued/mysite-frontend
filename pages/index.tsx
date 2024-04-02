@@ -1,6 +1,5 @@
-import HackerNewsReader from "./HackerNewsReader";
-
+import HomePage from "./HomePage";
 
 export default function Index(props: any) {
-    return <HackerNewsReader />;
+  return <HomePage />;
 }
