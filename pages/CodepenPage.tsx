@@ -35,7 +35,7 @@ export default function CodepenPage(params: any) {
               game. The goal of the game is to get a box with a points value of
               (you may have guessed it) 2048. To play, either use arrow keys or
               swipe gestures to move the boxes around the grid. If two boxes
-              with the same points value collide, they will be combine into a
+              with the same points value collide, they will combine into a
               single box with double the points.
             </p>
           </div>
