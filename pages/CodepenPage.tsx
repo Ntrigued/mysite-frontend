@@ -1,12 +1,11 @@
-import CodePen from "../components/CodePen/CodePen";
+import Link from "next/link";
 
+import CodePen from "../components/CodePen/CodePen";
 
 export default function CodepenPage(params: any) {
   return (
     <div className="flex flex-col">
-      <h1 className="text-4xl ml-[2.5%] mt-[1%] md:text-6xl">
-        Code Pens
-      </h1>
+      <h1 className="text-4xl ml-[2.5%] mt-[1%] md:text-6xl">Code Pens</h1>
       <div className="flex flex-col ml-[2.5%] mt-[2.5%] mr-[2.5%] md:flex-row md:mr-0">
         <div className="flex flex-col md:w-1/3">
           <h1 className="text-center text-2xl font-bold mb-[0.5%]">
@@ -17,6 +16,12 @@ export default function CodepenPage(params: any) {
             user={"allbeematthew"}
             title={"2048 Game"}
           />
+          <Link
+            className="text-center underline mt-[1.25%]"
+            href="https://codepen.io/allbeematthew/full/VwgowMX"
+          >
+            Open in Full Page View
+          </Link>
           <div id="2048_descr" className="mt-[5%]">
             <p className="indent-3 text-xl">
               Written with vanilla Javascript, CSS, and HTML, this pen is a
