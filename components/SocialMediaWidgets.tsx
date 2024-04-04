@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import githubLogo from "public/github-mark.png";
+import githubLogo from "public/github-mark-white.png";
 import LinkedInLogo from "public/linkedin_logo.png";
 
 export default function SocialMediaWidgets() {
