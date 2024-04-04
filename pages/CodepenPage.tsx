@@ -1,20 +1,10 @@
-import { Edu_TAS_Beginner } from "next/font/google";
-
 import CodePen from "../components/CodePen/CodePen";
 
-const edu_tas_font = Edu_TAS_Beginner({
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export default function CodepenPage(params: any) {
   return (
     <div className="flex flex-col">
-      <h1
-        className={
-          edu_tas_font.className + " text-4xl ml-[2.5%] mt-[1%] md:text-6xl"
-        }
-      >
+      <h1 className="text-4xl ml-[2.5%] mt-[1%] md:text-6xl">
         Code Pens
       </h1>
       <div className="flex flex-col ml-[2.5%] mt-[2.5%] mr-[2.5%] md:flex-row md:mr-0">
