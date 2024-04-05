@@ -19,7 +19,7 @@ module.exports = {
       },
       animation: {
         "fade-in-home_title_1": "fadeIn 1s ease-in forwards",
-        "fade-in-fast_forward": "fadeIn 0.5s ease-in 1.5s forwards",
+        "fade-in-fast_forward": "fadeIn 1s ease-in forwards",
         "fade-out-fast_forward": "fadeOut 0.5s ease-in forwards",
         "fade-in-home_title_2": "fadeIn 1s ease-in 2s forwards",
         "fade-in-home_title_3": "fadeIn 1s ease-in 4s forwards",

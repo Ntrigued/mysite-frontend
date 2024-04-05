@@ -1,24 +1,25 @@
 import Link from "next/link";
 import Icon from "@mdi/react";
 import { mdiFastForward } from "@mdi/js";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function HomePage(props: any) {
   const [use_animation, setUseAnimation] = useState(true);
+  const use_anim_ref = useRef(true);
 
   // remove fast_forward_div after animation has completed
-  setTimeout(() => {
-    let ff_div = document.getElementById("fast_forward_div");
-    if (ff_div !== null) {
-      ff_div.classList.remove("animate-fade-in-fast_forward");
-      ff_div.classList.add("animate-fade-out-fast_forward");
-      setTimeout(() => {
-        console.log("done");
-        console.log(ff_div);
-      }, 1000);
-    }
-    console.log(ff_div);
-  }, 7500);
+  useEffect(() => {
+    setTimeout(() => {
+      let ff_div = document.getElementById("fast_forward_div");
+      console.log("Running timeout with use_anim_ref=" + use_anim_ref.current);
+      if (ff_div !== null && use_anim_ref.current) {
+        ff_div.classList.remove("animate-fade-in-fast_forward");
+        ff_div.classList.remove("cursor-pointer");
+        ff_div.classList.add("animate-fade-out-fast_forward");
+        ff_div.classList.add("cursor-default");
+      }
+    }, 7500);
+  }, []);
 
   return (
     <div className=" flex flex-col w-full md:ml-[2.5vw]">
@@ -47,28 +48,36 @@ export default function HomePage(props: any) {
           <h3
             className={
               (use_animation ? "animate-fade-in-home_title_3 opacity-0" : "") +
-              " text-2xl mt-[5%]"
+              " text-2xl mt-[10%]"
             }
           >
             Have a look around:
           </h3>
         </div>
         <div
-          id="fast_forward_div"
           className={
-            (use_animation
-              ? "animate-fade-in-fast_forward opacity-0"
-              : "hidden") +
-            " cursor-pointer grow flex flex-col items-center pt-[2.5%] xl:pt-[1.25%]"
+            " grow flex flex-col items-center pt-[2.5%] mr-[1.25%] md:[1.25%] xl:pt-[1.25%]"
           }
         >
           <div
-            className="flex border-2 border-black border-solid rounded-xl"
-            onClick={() => setUseAnimation(false)}
+            id="fast_forward_div"
+            className={
+              (use_animation
+                ? "animate-fade-in-fast_forward cursor-pointer"
+                : "cursor-default") + " opacity-0 flex flex-col"
+            }
+            onClick={() => {
+              use_anim_ref.current = false;
+              setUseAnimation(false);
+            }}
           >
-            <Icon path={mdiFastForward} size={3} />
+            <div className="flex justify-center grow-0">
+              <div className=" border-2 border-black border-solid rounded-xl">
+                <Icon path={mdiFastForward} size={3} />
+              </div>
+            </div>
+            <p className="text-center">Skip Animation</p>
           </div>
-          <p className="text-center">Skip Animation</p>
         </div>
       </div>
       <div
