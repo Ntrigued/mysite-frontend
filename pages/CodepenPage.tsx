@@ -61,7 +61,7 @@ export default function CodepenPage(params: any) {
               <span className="italic">me</span>) play along with the chord
               changes from over 1,000 jazz standards. Simply select the desired
               song from the dropdown, set the BPM which you want to play at, and
-              hit Start. If I do say so myself, it's a great learning tool.{" "}
+              hit Start. If I do say so myself, {"it's"} a great learning tool.{" "}
               {"You'll"} probably want to view this in{" "}
               <Link
                 className="underline"
