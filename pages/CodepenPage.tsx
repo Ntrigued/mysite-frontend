@@ -4,7 +4,7 @@ import CodePen from "../components/CodePen/CodePen";
 
 export default function CodepenPage(params: any) {
   return (
-    <div className="flex flex-col gap-x-1">
+    <div className="flex flex-col">
       <h1 className="text-4xl ml-[2.5%] mt-[1%] md:text-6xl">Code Pens</h1>
       <div className="flex flex-col gap-y-[2rem] ml-[2.5%] mt-[3.125vh] mr-[2.5%] md:flex-row md:gap-y-0 md:gap-x-[2rem] md:mr-0">
         <div className="flex flex-col md:w-1/3">
