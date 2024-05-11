@@ -1,6 +1,6 @@
 import AbstractAdapter  from "./AbstractAdapter";
 import CommentSection from "../CommentSection";
-import url_link_img from 'public/url_link.jpg';
+import url_link_img from '../../../public/url_link.jpg';
 
 import Image from "next/image";
 import React from "react";

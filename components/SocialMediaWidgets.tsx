@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import githubLogo from "public/github-mark-white.png";
-import LinkedInLogo from "public/linkedin_logo.png";
+import githubLogo from "../public/github_mark_white.png";
+import LinkedInLogo from "../public/linkedin_logo.png";
 
 export default function SocialMediaWidgets() {
   // Twitter requires this script to show the widget
