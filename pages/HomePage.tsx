@@ -2,6 +2,8 @@ import Link from "next/link";
 import Icon from "@mdi/react";
 import { mdiFastForward } from "@mdi/js";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import githubLogo from "public/github-mark-black.png";
 
 export default function HomePage(props: any) {
   const [use_animation, setUseAnimation] = useState(true);
@@ -104,6 +106,36 @@ export default function HomePage(props: any) {
             </div>
           </div>
         </Link>
+        <Link href="https://github.com/Ntrigued/SpanishTranslateOnHighlight">
+          <div
+            className={
+              (use_animation ? "animate-fade-in-codepen_card opacity-0" : "") +
+              " shadow-xl rounded-lg flex flex-col items-center justify-around border-solid border-2 w-[15em] aspect-square md:w-[20em] xl:w-[25em]"
+            }
+          >
+            <div className="flex items-center">
+              <h3 className="pl-[1em] pr-[1em] text-2xl font-bold text-center md:text-4xl">
+                Web Extension
+              </h3>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <Image
+                className="max-w-[40%] rounded-full"
+                src={githubLogo}
+                alt={"link to my web extension repository on GitHub"}
+                width={380}
+                height={403}
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <p className="pl-[1em] pr-[1em] text-center md:text-2xl">
+                Small web extension created to help me (and maybe you!) learn
+                Spanish
+              </p>
+            </div>
+          </div>
+        </Link>
+
         <Link href="/CodepenPage">
           <div
             className={
