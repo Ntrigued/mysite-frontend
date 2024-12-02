@@ -3,7 +3,7 @@ import Icon from "@mdi/react";
 import { mdiFastForward } from "@mdi/js";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import githubLogo from "public/github-mark-black.png";
+import githubLogo from "../public/github-mark-black.png";
 
 export default function HomePage(props: any) {
   const [use_animation, setUseAnimation] = useState(true);
