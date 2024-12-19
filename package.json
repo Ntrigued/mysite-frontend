@@ -14,6 +14,8 @@
     "test:ci": "jest --ci"
   },
   "dependencies": {
+    "@mdi/js": "^7.4.47",
+    "@mdi/react": "^1.6.1",
     "@tanstack/react-query": "^4.36.1",
     "@types/node": "18.11.13",
     "@types/react": "18.0.26",
